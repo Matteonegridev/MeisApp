@@ -3,12 +3,12 @@ const animatePage = (event) => {
   // Prevent the immediate navigation
 
   if (!window.AnimationEvent) {
-    window.location.href = target.href;
+    window.location.href = event.target.href;
   }
 
   document.body.classList.add("animate-fade-out");
   // Navigate to the target URL
-  window.location.href = target.href;
+  window.location.href = event.target.href;
 };
 
 export function MainPage() {
