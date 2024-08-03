@@ -1,33 +1,3 @@
-const soundsColor = [
-  {
-    id: 0,
-    name: "Suikinkutsu",
-    color: "#daff6f",
-    description: "Water Drip Resonance",
-    sound: new Audio("assets/Suikinkutsu.mp3"),
-  },
-  {
-    id: 1,
-    name: "Cicadas",
-    color: "#A8AEEF",
-    description: "Insect Chorus",
-    sound: new Audio("./assets/Cicadas.mp3"),
-  },
-  {
-    id: 2,
-    name: "Temple Bells",
-    color: "#A8AEEF",
-    description: "Waterfall Roar",
-    sound: new Audio("./assets/TempleBellSound.mp3"),
-  },
-  {
-    id: 3,
-    name: "Shomyo Falls",
-    color: "#daff6f",
-    description: "Bell Resonance",
-    sound: new Audio("./assets/Waterfall.mp3"),
-  },
-];
 function playSound(soundUrl) {
   soundUrl.play();
   console.log("Playing sound:", soundUrl);
@@ -35,7 +5,7 @@ function playSound(soundUrl) {
 
 //TODO Install React Player
 
-function Buttons() {
+function Buttons({ soundsColor }) {
   return (
     <>
       {/* Destructuring per rilevare le properties dall'oggetto */}
@@ -60,9 +30,40 @@ function Buttons() {
 }
 
 export function SoundScapes() {
+  const soundsColor = [
+    {
+      id: 0,
+      name: "Suikinkutsu",
+      color: "#daff6f",
+      description: "Water Drip Resonance",
+      sound: new Audio("assets/Suikinkutsu.mp3"),
+    },
+    {
+      id: 1,
+      name: "Cicadas",
+      color: "#A8AEEF",
+      description: "Insect Chorus",
+      sound: new Audio("./assets/Cicadas.mp3"),
+    },
+    {
+      id: 2,
+      name: "Temple Bells",
+      color: "#A8AEEF",
+      description: "Waterfall Roar",
+      sound: new Audio("./assets/TempleBellSound.mp3"),
+    },
+    {
+      id: 3,
+      name: "Shomyo Falls",
+      color: "#daff6f",
+      description: "Bell Resonance",
+      sound: new Audio("./assets/Waterfall.mp3"),
+    },
+  ];
+
   return (
     <div className="grid grid-cols-2 grid-rows-2 gap-3 p-6 mt-8">
-      <Buttons />
+      <Buttons soundsColor={soundsColor} />
     </div>
   );
 }
