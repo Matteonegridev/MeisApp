@@ -1,13 +1,14 @@
 // funzione per l'animazione fade-out pagina:
 const animatePage = (event) => {
   // Prevent the immediate navigation
-
   if (!window.AnimationEvent) {
     window.location.href = event.target.href;
   }
 
   document.body.classList.add("animate-fade-out");
+
   // Navigate to the target URL
+
   window.location.href = event.target.href;
 };
 

@@ -8,10 +8,6 @@ function Buttons({ soundsColor }) {
   const [currentSound, setCurrentSound] = useState(null);
   const playerRef = useRef(null);
 
-  function handleText(id) {
-    setAlternativeText(id);
-  }
-
   function handleSound(soundUrl) {
     if (currentSound && currentSound !== soundUrl) {
       playerRef.current.seekTo(0);
@@ -32,7 +28,7 @@ function Buttons({ soundsColor }) {
           key={id}
           onClick={() => {
             handleSound(sound);
-            handleText(id);
+            setAlternativeText(id);
           }}
         >
           <ReactPlayer
