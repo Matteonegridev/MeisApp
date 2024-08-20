@@ -8,6 +8,18 @@ const timers = [
   { time: 20, id: 3 },
 ];
 
+function handleClickStart() {}
+
+function handleClickPause() {}
+
+function Button({ onClick, text, className }) {
+  return (
+    <button className={className} onClick={onClick}>
+      {text}
+    </button>
+  );
+}
+
 function Timer() {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(10);
@@ -37,6 +49,10 @@ function Timer() {
       <div className="mt-3 text-center font-semibold">
         <span className="text-white text-4xl">{minutes}:</span>
         <span className="text-white text-4xl">00</span>
+      </div>
+      <div className="flex justify-around p-4">
+        <Button className={"bg-white px-4 py-2 rounded-full"} text="Start" />
+        <Button className={"bg-white px-4 py-2 rounded-full"} text="Pause" />
       </div>
     </div>
   );

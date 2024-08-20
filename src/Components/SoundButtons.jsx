@@ -95,7 +95,7 @@ export function SoundScapes() {
   ];
 
   return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-3 p-6 mt-8">
+    <div className="grid grid-cols-2 grid-rows-2 gap-3 p-6 mt-[0.5rem]">
       <Buttons soundsColor={soundsColor} />
     </div>
   );
