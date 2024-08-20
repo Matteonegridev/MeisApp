@@ -2,25 +2,35 @@ import PropTypes from "prop-types";
 import { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 
-function Buttons({ soundsColor }) {
+function Buttons({ text, setText, soundsColor }) {
+  function handleButtonId(id) {
+    setText(id);
+    console.log(id);
+  }
+
   return (
     <>
-      {soundsColor.map(({ id, name, color, description, sound }, index) => {
+      {soundsColor.map(({ id, name, color, description, sound }, index) => (
         <button
           id={`btn-${index}`}
-          className="p-20 relative rounded-[10px] active:scale-[0.98] transition-all 150ms ease-in "
+          className="p-20 relative rounded-[10px] active:scale-[0.98] transition-all 150ms ease-in"
           key={id}
           name={name}
-          color={{ backgroundColor: color }}
+          style={{ backgroundColor: color }}
+          onClick={() => handleButtonId(id)}
         >
-          {description}
-        </button>;
-      })}
+          <div className="absolute top-20 w-3/4 left-3 text-left">
+            <p className="text-[#000] font-bold font-sourceSans">{name}</p>
+            <small className="font-sourceSans text-secondSubtext font-light">
+              {text === id ? "Playing..." : description}
+            </small>
+          </div>
+        </button>
+      ))}
     </>
   );
 }
-
-export function SoundScapes() {
+export function SoundScapes({ text, setText }) {
   const soundsColor = [
     {
       id: 0,
@@ -52,5 +62,9 @@ export function SoundScapes() {
     },
   ];
 
-  return <Buttons soundsColor={soundsColor} />;
+  return (
+    <div className="grid grid-cols-2 gap-2 mt-[0.5rem] p-3">
+      <Buttons text={text} setText={setText} soundsColor={soundsColor} />
+    </div>
+  );
 }
