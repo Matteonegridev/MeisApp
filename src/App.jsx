@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SoundScapes } from "./Components/SoundButtons";
+import { Time } from "./Components/Timer";
 
 export default function App() {
   const [text, setText] = useState("");
@@ -9,6 +10,7 @@ export default function App() {
   return (
     <>
       <SoundScapes text={text} setText={setText} />
+      <Time />
     </>
   );
 }
