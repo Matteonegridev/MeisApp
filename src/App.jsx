@@ -4,13 +4,18 @@ import { Time } from "./Components/Timer";
 
 export default function App() {
   const [text, setText] = useState("");
-  const [playing, setPlaying] = useState(false);
+  const [isplaying, setISPlaying] = useState(false);
   const [currentSound, setCurrentSound] = useState(null);
 
   return (
     <>
       <SoundScapes text={text} setText={setText} />
-      <Time />
+      <Time
+        playing={isplaying}
+        currentSound={currentSound}
+        setPlaying={setISPlaying}
+        setCurrentSound={setCurrentSound}
+      />
     </>
   );
 }

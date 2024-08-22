@@ -16,7 +16,7 @@ function Button({ onClick, text, className }) {
   );
 }
 
-function Timer({ playing, setPlaying, currentSound, setCurrentSound }) {
+function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(10);
   const [isActive, setIsActive] = useState(false);
@@ -58,11 +58,11 @@ function Timer({ playing, setPlaying, currentSound, setCurrentSound }) {
       <div className="relative flex justify-around p-4">
         <Button className="pause-start-button" text="Start" />
         <Button className="pause-start-button" text="Pause" />
-        {currentSound && (
+        {isPlaying && (
           <ReactPlayer
             className="absolute"
             url={currentSound.sound}
-            playing={currentSound ? playing : null}
+            playing={currentSound ? isPlaying : null}
             volume={1}
             width={0}
             height={0}
