@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { SoundScapes } from "./SoundButtons";
+import { soundsColor } from "./SoundButtons";
 import ReactPlayer from "react-player";
 
 const timers = [
@@ -16,13 +16,7 @@ function Button({ onClick, text, className }) {
   );
 }
 
-function Timer({
-  playing,
-  setPlaying,
-  currentSound,
-  setCurrentSound,
-  SoundScapes,
-}) {
+function Timer({ playing, setPlaying, currentSound, setCurrentSound }) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(10);
   const [isActive, setIsActive] = useState(false);
@@ -61,11 +55,20 @@ function Timer({
         <span className="text-white text-4xl">{minutes}:</span>
         <span className="text-white text-4xl">00</span>
       </div>
-      <div className="flex justify-around p-4">
-        <Button className={"bg-white px-4 py-2 rounded-full"} text="Start" />
-        <Button className={"bg-white px-4 py-2 rounded-full"} text="Pause" />
+      <div className="relative flex justify-around p-4">
+        <Button className="pause-start-button" text="Start" />
+        <Button className="pause-start-button" text="Pause" />
+        {currentSound && (
+          <ReactPlayer
+            className="absolute"
+            url={currentSound.sound}
+            playing={currentSound ? playing : null}
+            volume={1}
+            width={0}
+            height={0}
+          />
+        )}
       </div>
-      <ReactPlayer url={SoundScapes} playing={playing} loop={false} />
     </div>
   );
 }

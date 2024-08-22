@@ -9,3 +9,6 @@
 .box {
   @apply absolute rounded-md top-7 left-5 bg-slate-300;
 }
+.pause-start-button {
+  @apply bg-white px-4 py-2 rounded-full active:scale-[0.96];
+}

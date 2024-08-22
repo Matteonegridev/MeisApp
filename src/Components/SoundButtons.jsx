@@ -1,7 +1,37 @@
 import { useState, useRef } from "react";
-import ReactPlayer from "react-player";
 
-function Buttons({ text, setText, soundsColor }) {
+export const soundsColor = [
+  {
+    id: 0,
+    name: "Suikinkutsu",
+    color: "#daff6f",
+    description: "Water Drip Resonance",
+    sound: "./assets/Suikinkutsu.mp3",
+  },
+  {
+    id: 1,
+    name: "Cicadas",
+    color: "#A8AEEF",
+    description: "Insect Chorus",
+    sound: "./assets/Cicadas.mp3",
+  },
+  {
+    id: 2,
+    name: "Temple Bells",
+    color: "#A8AEEF",
+    description: "Waterfall Roar",
+    sound: "./assets/TempleBellSound.mp3",
+  },
+  {
+    id: 3,
+    name: "Shomyo Falls",
+    color: "#daff6f",
+    description: "Bell Resonance",
+    sound: "./assets/Waterfall.mp3",
+  },
+];
+
+function Buttons({ text, setText }) {
   const [isSelected, setIsSelected] = useState(null);
 
   let buttonClassName =
@@ -14,7 +44,7 @@ function Buttons({ text, setText, soundsColor }) {
 
   return (
     <>
-      {soundsColor.map(({ id, name, color, description, sound }, index) => (
+      {soundsColor.map(({ id, name, color, description }, index) => (
         <button
           id={`btn-${index}`}
           className={
@@ -45,40 +75,9 @@ function Buttons({ text, setText, soundsColor }) {
 }
 
 export function SoundScapes({ text, setText }) {
-  const soundsColor = [
-    {
-      id: 0,
-      name: "Suikinkutsu",
-      color: "#daff6f",
-      description: "Water Drip Resonance",
-      sound: "./assets/Suikinkutsu.mp3",
-    },
-    {
-      id: 1,
-      name: "Cicadas",
-      color: "#A8AEEF",
-      description: "Insect Chorus",
-      sound: "./assets/Cicadas.mp3",
-    },
-    {
-      id: 2,
-      name: "Temple Bells",
-      color: "#A8AEEF",
-      description: "Waterfall Roar",
-      sound: "./assets/TempleBellSound.mp3",
-    },
-    {
-      id: 3,
-      name: "Shomyo Falls",
-      color: "#daff6f",
-      description: "Bell Resonance",
-      sound: "./assets/Waterfall.mp3",
-    },
-  ];
-
   return (
     <div className="grid grid-cols-2 gap-2 mt-[0.5rem] p-3">
-      <Buttons text={text} setText={setText} soundsColor={soundsColor} />
+      <Buttons text={text} setText={setText} />
     </div>
   );
 }
