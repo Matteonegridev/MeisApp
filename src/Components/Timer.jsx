@@ -21,6 +21,7 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
   const [minutes, setMinutes] = useState(timers[0].time);
   const [start, setStart] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -59,7 +60,10 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
         {timers.map(({ time, id }) => {
           return (
             <button
-              onClick={() => handleTime(time)}
+              disabled={isRunning}
+              onClick={() => {
+                handleTime(time);
+              }}
               className="bg-primary text-black px-7 py-1 font-sourceSans font-bold rounded-md text-2xl"
               key={id}
             >
