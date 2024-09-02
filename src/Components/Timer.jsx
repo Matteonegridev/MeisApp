@@ -18,21 +18,37 @@ function Button({ onClick, text, className }) {
 
 function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
   const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(10);
-  const [isPaused, setIsPaused] = useState(false);
+  const [minutes, setMinutes] = useState(timers[0].time);
   const [start, setStart] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
 
-  // useEffect() {
-  //   // timer function logic here
-  // }
+  useEffect(() => {
+    let timer;
+    if (isRunning) {
+      timer = setInterval(() => {
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(timer);
+          } else {
+            setMinutes((m) => m - 1);
+            setSeconds(59);
+          }
+        } else {
+          setSeconds((s) => s - 1);
+        }
+      }, 1000);
+    }
+
+    return () => clearInterval(timer);
+  }, [isRunning, minutes, seconds]);
+
+  function startTimer() {
+    setIsRunning(!isRunning);
+  }
 
   function handleTime(time) {
     setMinutes(time);
   }
-
-  function handleClickStart() {}
-
-  function handleClickPause() {}
 
   return (
     <div className="mt-2 font-sourceSans">
@@ -54,7 +70,9 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
       </div>
       <div className="mt-3 text-center font-semibold">
         <span className="text-white text-5xl">{minutes}:</span>
-        <span className="text-white text-5xl">00</span>
+        <span className="text-white text-5xl">
+          {seconds < 10 ? "0" + seconds : seconds}
+        </span>
       </div>
       <div className="relative flex justify-around p-4">
         <Button
@@ -66,7 +84,10 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
               <span className="material-symbols-outlined">pause_circle</span>
             )
           }
-          onClick={() => setStart(!start)}
+          onClick={() => {
+            setStart(!start);
+            startTimer();
+          }}
         />
 
         {isPlaying && (
