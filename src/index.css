@@ -10,5 +10,8 @@
   @apply absolute rounded-md top-7 left-5 bg-slate-300;
 }
 .pause-start-button {
-  @apply bg-white px-4 py-2 rounded-full active:scale-[0.96];
+  @apply bg-secondary mt-2 w-16 h-16 rounded-full active:scale-[0.96] outline outline-primary flex justify-center items-center;
+}
+.material-symbols-outlined {
+  @apply text-8xl text-black;
 }

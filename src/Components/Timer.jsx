@@ -19,7 +19,8 @@ function Button({ onClick, text, className }) {
 function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(10);
-  const [isActive, setIsActive] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [start, setStart] = useState(true);
 
   // useEffect() {
   //   // timer function logic here
@@ -52,20 +53,22 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
         })}
       </div>
       <div className="mt-3 text-center font-semibold">
-        <span className="text-white text-4xl">{minutes}:</span>
-        <span className="text-white text-4xl">00</span>
+        <span className="text-white text-5xl">{minutes}:</span>
+        <span className="text-white text-5xl">00</span>
       </div>
       <div className="relative flex justify-around p-4">
         <Button
           className="pause-start-button"
-          text="Start"
-          onClick={handleClickStart}
+          text={
+            start ? (
+              <span className="material-symbols-outlined">play_circle</span>
+            ) : (
+              <span className="material-symbols-outlined">pause_circle</span>
+            )
+          }
+          onClick={() => setStart(!start)}
         />
-        <Button
-          className="pause-start-button"
-          text="Pause"
-          onClick={handleClickPause}
-        />
+
         {isPlaying && (
           <ReactPlayer
             className="absolute"
