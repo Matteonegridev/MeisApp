@@ -19,9 +19,8 @@ function Button({ onClick, text, className }) {
 function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(timers[0].time);
-  const [start, setStart] = useState(true);
+  const [toggleStart, setToggleStart] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
-  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -49,6 +48,14 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
 
   function handleTime(time) {
     setMinutes(time);
+  }
+
+  function stopTimer() {
+    if (!isRunning) {
+      setMinutes(timers[0].time);
+      setSeconds(0);
+    }
+    return;
   }
 
   return (
@@ -82,16 +89,21 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
         <Button
           className="pause-start-button"
           text={
-            start ? (
+            toggleStart ? (
               <span className="material-symbols-outlined">play_circle</span>
             ) : (
               <span className="material-symbols-outlined">pause_circle</span>
             )
           }
           onClick={() => {
-            setStart(!start);
+            setToggleStart(!toggleStart);
             startTimer();
           }}
+        />
+        <Button
+          className="pause-start-button"
+          text={<span className="material-symbols-outlined">stop_circle</span>}
+          onClick={stopTimer}
         />
 
         {isPlaying && (
