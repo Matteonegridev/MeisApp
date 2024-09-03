@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 export const soundsColor = [
   {
@@ -31,7 +31,7 @@ export const soundsColor = [
   },
 ];
 
-function Buttons({ text, setText }) {
+function Buttons({ text, setText, setSelectedSound, isRunning }) {
   const [isSelected, setIsSelected] = useState(null);
 
   let buttonClassName =
@@ -40,6 +40,7 @@ function Buttons({ text, setText }) {
   function handleButtonId(id) {
     setIsSelected(id);
     setText(id);
+    setSelectedSound(id);
   }
 
   return (
@@ -65,7 +66,11 @@ function Buttons({ text, setText }) {
           <div className="absolute top-20 w-3/4 left-3 text-left ">
             <p className="text-[#000] font-bold font-sourceSans">{name}</p>
             <small className="font-sourceSans text-secondSubtext font-light">
-              {text === id ? "Selected Sound" : description}
+              {text === id && isRunning
+                ? "Playing"
+                : text === id
+                ? "Selected Sound"
+                : description}
             </small>
           </div>
         </button>
@@ -74,10 +79,15 @@ function Buttons({ text, setText }) {
   );
 }
 
-export function SoundScapes({ text, setText }) {
+export function SoundScapes({ text, setText, setSelectedSound, isRunning }) {
   return (
     <div className="grid grid-cols-2 gap-2 mt-[0.5rem] p-3">
-      <Buttons text={text} setText={setText} />
+      <Buttons
+        text={text}
+        setText={setText}
+        setSelectedSound={setSelectedSound}
+        isRunning={isRunning}
+      />
     </div>
   );
 }

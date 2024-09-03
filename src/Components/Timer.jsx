@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { soundsColor } from "./SoundButtons";
 import ReactPlayer from "react-player";
 
@@ -16,19 +16,28 @@ function Button({ onClick, text, className }) {
   );
 }
 
-function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
+function Timer({
+  isPlaying,
+  setIsPlaying,
+  currentSound,
+  setCurrentSound,
+  selectedSound,
+  isRunning,
+  setIsRunning,
+}) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(timers[0].time);
   const [toggleStart, setToggleStart] = useState(true);
-  const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     let timer;
-    if (isRunning) {
+    if (isRunning && selectedSound !== null) {
       timer = setInterval(() => {
         if (seconds === 0) {
           if (minutes === 0) {
             clearInterval(timer);
+            setIsPlaying(false);
+            setIsRunning(false);
           } else {
             setMinutes((m) => m - 1);
             setSeconds(59);
@@ -40,7 +49,16 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
     }
 
     return () => clearInterval(timer);
-  }, [isRunning, minutes, seconds]);
+  }, [isRunning, minutes, seconds, selectedSound]);
+
+  useEffect(() => {
+    if (isRunning && selectedSound !== null) {
+      setIsPlaying(true);
+      setCurrentSound(soundsColor[selectedSound].sound);
+    } else {
+      setIsPlaying(false);
+    }
+  }, [selectedSound, isRunning]);
 
   function startTimer() {
     setIsRunning(!isRunning);
@@ -121,6 +139,26 @@ function Timer({ isPlaying, setIsPlaying, currentSound, setCurrentSound }) {
   );
 }
 
-export function Time() {
-  return <Timer />;
+export function Time({
+  isPlaying,
+  setIsPlaying,
+  currentSound,
+  setCurrentSound,
+  selectedSound,
+  setSelectedSound,
+  isRunning,
+  setIsRunning,
+}) {
+  return (
+    <Timer
+      isPlaying={isPlaying}
+      setIsPlaying={setIsPlaying}
+      currentSound={currentSound}
+      setCurrentSound={setCurrentSound}
+      selectedSound={selectedSound}
+      setSelectedSound={setSelectedSound}
+      isRunning={isRunning}
+      setIsRunning={setIsRunning}
+    />
+  );
 }
