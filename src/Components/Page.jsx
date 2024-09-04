@@ -37,7 +37,7 @@ export function MainPage() {
         <a
           id="btn"
           onClick={animatePage}
-          href="main.html"
+          href="/main.html"
           className="px-14 py-3 rounded-xl bg-primary  flex justify-center items-center"
         >
           <span className="font-sourceSans text-[#000] font-semibold text-3xl xsm:text-4xl">
