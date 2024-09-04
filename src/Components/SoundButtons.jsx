@@ -35,7 +35,7 @@ function Buttons({ text, setText, setSelectedSound, isRunning }) {
   const [isSelected, setIsSelected] = useState(null);
 
   let buttonClassName =
-    "p-20 relative rounded-[10px] transition-all 150ms ease-in";
+    "p-20 relative rounded-[10px] transition-all 150ms ease-in md:w-3/4";
 
   function handleButtonId(id) {
     setIsSelected(id);
@@ -81,7 +81,7 @@ function Buttons({ text, setText, setSelectedSound, isRunning }) {
 
 export function SoundScapes({ text, setText, setSelectedSound, isRunning }) {
   return (
-    <div className="grid grid-cols-2 gap-2 mt-[0.5rem] p-3">
+    <div className="grid grid-cols-2 gap-2 mt-[0.5rem] p-3 md:flex md:gap-2 md:p-4">
       <Buttons
         text={text}
         setText={setText}

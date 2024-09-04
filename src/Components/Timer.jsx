@@ -78,10 +78,10 @@ function Timer({
 
   return (
     <div className="mt-2 font-sourceSans">
-      <h2 className="text-white text-2xl font-semibold p-1 text-center">
+      <h2 className="text-white text-2xl font-semibold p-1 text-center md:text-4xl">
         How long you want to relax for?
       </h2>
-      <div className="p-3 flex justify-around">
+      <div className="p-3 flex justify-around md:p-6 md:gap-4 md:flex-wrap">
         {timers.map(({ time, id }) => {
           return (
             <button
@@ -89,7 +89,7 @@ function Timer({
               onClick={() => {
                 handleTime(time);
               }}
-              className="bg-primary text-black px-7 py-1 font-sourceSans font-bold rounded-md text-2xl"
+              className="bg-primary text-black px-7 py-1 font-sourceSans font-bold rounded-md text-2xl md:px-24 md:py-3 md:text-4xl"
               key={id}
             >
               {time}
@@ -103,7 +103,7 @@ function Timer({
           {seconds < 10 ? "0" + seconds : seconds}
         </span>
       </div>
-      <div className="relative flex justify-around p-4">
+      <div className="relative flex justify-around p-4 md:p-7 md:justify-center md:gap-7">
         <Button
           className="pause-start-button"
           text={

@@ -13,6 +13,9 @@ module.exports = {
         secondaryAccent: "#CDD0ED",
         primaryAccent: "#EFFFC3",
       },
+      backgroundImage: {
+        "hero-pattern": "url('/img/night-sky.jpg')",
+      },
       screens: {
         xsm: { max: "650px" },
 
